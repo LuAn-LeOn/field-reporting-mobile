@@ -1,4 +1,4 @@
-# 🌦️ IGS Field Reporting System - Mobile App
+# 🌦️ Field Reporting System - Mobile App
 
 Aplicación móvil Android desarrollada en Flutter para la captura, administración y sincronización de reportes meteorológicos de campo.
 
@@ -336,7 +336,5 @@ docker compose up -d --build
 ---
 
 # 🏢 Proyecto
-
-IGS - Intelligent Global Systems
 
 Sistema móvil empresarial para reportes meteorológicos y operación de campo.
