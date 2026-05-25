@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../services/session_service.dart';
 import 'dashboard_screen.dart';
+import 'forgot_password_screen.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -59,7 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Correo o contraseña incorrectos'),
+          content: Text(
+            'Correo o contraseña incorrectos, o usuario pendiente de autorización',
+          ),
           backgroundColor: Colors.red,
         ),
       );
@@ -70,6 +74,24 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       }
     }
+  }
+
+  void _goToRegister() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const RegisterScreen(),
+      ),
+    );
+  }
+
+  void _goToForgotPassword() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ForgotPasswordScreen(),
+      ),
+    );
   }
 
   @override
@@ -102,7 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
                 horizontal: 28,
@@ -302,10 +323,36 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
+
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: OutlinedButton(
+                        onPressed: _isLoading ? null : _goToRegister,
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color(0xFF0A3D91),
+                          side: const BorderSide(
+                            color: Color(0xFF0A3D91),
+                            width: 1.4,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
+                        child: const Text(
+                          'Crear cuenta',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
 
                     TextButton(
-                      onPressed: () {},
+                      onPressed: _isLoading ? null : _goToForgotPassword,
                       child: const Text(
                         '¿Olvidaste tu contraseña?',
                         style: TextStyle(
